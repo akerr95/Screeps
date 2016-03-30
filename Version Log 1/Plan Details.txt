@@ -1,0 +1,19 @@
+Plan Objective:
+  Survive 10 minutes in survival
+
+Plan Execution:
+  Create a Unit called EnergyEngineer containing ( work, movement, carry )  200
+  Let that unit start mining resources
+  Create a unit called DeathTroop containing (move, attack, tough, tough) 150
+  Give commands to DeathTroop to Attack on site
+  Create a DeathTroop
+  Create a DeathTroop
+  Create a EnergyEngineer
+  Plan Complete
+
+Expected Results:
+  25 minutes
+Passable Results:
+  17 minutes
+
+Outcome:
