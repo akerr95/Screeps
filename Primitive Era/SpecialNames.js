@@ -4,14 +4,18 @@
 var Country = (function () {
     var my = {};
 
-    my.Capital = "Jamaica";
+    my.Occupation = {
+        eMin: 'Energy Miner',
+        Gua:'Guard'
+    };
+    my.Capital = "Spawn1";
     my.energyMiner = {
         body: [WORK, MOVE, CARRY],
-        memory: {role: "Energy Miner"}
+        memory: {role:Occupation.energyMiner}
     };
     my.guard = {
         body: [TOUGH, MOVE, ATTACK],
-        role: "Death Trooper"
+        memory: {role:Occupation.Gua}
     };
     return my;
 }());

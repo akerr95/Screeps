@@ -1,35 +1,50 @@
 /**
  * Created by akerr on 23/06/2016.
  */
+var special = require('SpecialNames');
 var CivFunctions = (function(){
     var civ = {};
-    civ.BeginWorkEnergyEng =function(energySource, headQuarters) {
-        var path;
-        var energyEngineers = [];
-        for (var i in Game.creeps) {
-            if (Memory.creeps[i].role === 'Energy Engineer') {
-                energyEngineers.push(Game.creeps[i]);
+
+    civ.Occupants= function (role) {
+        var occupantsList=[];
+        for (var i in Game.creeps){
+            if(Memory.creeps[i].role === role){
+                occupantsList.push(Game.creeps[i]);
             }
         }
+    };
+    function GoToStructure(pos,dest){
+        var path;
+        path = energyMiner.room.findPath(energyMiner.pos,
+            energySource.pos);
+        energyMiner.moveByPath(path);
+    }
+    function CheckComponentSize(component){
 
-        energyEngineers.forEach(function(energyEngineer) {
-            path = energyEngineer.room.findPath(energyEngineer.pos,
+    }
+    civ.BeginMining =function(energySource, headQuarters) {
+        var path;
+        var energyMiners = [];
+        energyMiners=civ.Occupants(special.Occupants.eMin);
+
+        energyMiners.forEach(function(energyMiner) {
+            path = energyMiner.room.findPath(energyMiner.pos,
                 energySource.pos);
-            if (energyEngineer.carryCapacity === energyEngineer.carry.energy) {
-                path = energyEngineer.room.findPath(energyEngineer.pos,
+            if (energyMiner.carryCapacity === energyMiner.carry.energy) {
+                path = energyMiner.room.findPath(energyMiner.pos,
                     headQuarters.pos);
                 if (path.length > 1) {
-                    energyEngineer.moveByPath(path);
+                    energyMiner.moveByPath(path);
                 } else {
-                    console.log(energyEngineer.transfer(headQuarters, RESOURCE_ENERGY));
+                    console.log(energyMiner.transfer(headQuarters, RESOURCE_ENERGY));
                 }
                 console.log(path);
                 return;
             }
             if (path.length > 1) {
-                energyEngineer.moveByPath(path);
+                energyMiner.moveByPath(path);
             } else {
-                energyEngineer.harvest(energySource);
+                energyMiner.harvest(energySource);
             }
         });
     }
