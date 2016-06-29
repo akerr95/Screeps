@@ -27,28 +27,6 @@ var Spawn = (function () {
         }
 
     };
-
-    spawnFeature.CreateEnergyMiner = function (location) {
-        var location = location || spawnFeature.FindHQ();
-        var energyEngineer= Country.energyMiner;
-
-        if (!location.canCreateCreep(energyEngineer.body)) {
-            location.createCreep(energyEngineer.body, "", energyEngineer.memory);
-        } else {
-            console.log("Either no energy or something currently being spawned. ");
-        }
-    };
-
-    spawnFeature.CreateDeathTroop = function (location) {
-        var guard =  Country.guard;
-        var location = location || spawnFeature.FindHQ();
-
-        if (!location.canCreateCreep(guard.body)) {
-            location.createCreep(guard.body, "", guard.role);
-        } else {
-            console.log("Error Code: " + location.canCreateCreep(guard.body));
-        }
-    }
     return spawnFeature;
 }());
 module.exports = Spawn;

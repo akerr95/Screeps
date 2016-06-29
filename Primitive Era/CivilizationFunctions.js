@@ -12,8 +12,9 @@ var CivFunctions = (function(){
                 occupantsList.push(Game.creeps[i]);
             }
         }
+        return occupantsList;
     };
-    function GoToStructure(pos,dest){
+    function GetPath(pos,dest){
         var path;
         path = energyMiner.room.findPath(energyMiner.pos,
             energySource.pos);
@@ -22,7 +23,7 @@ var CivFunctions = (function(){
     function CheckComponentSize(component){
 
     }
-    civ.BeginMining =function(energySource, headQuarters) {
+    civ.Work =function(Worker, headQuarters) {
         var path;
         var energyMiners = [];
         energyMiners=civ.Occupants(special.Occupants.eMin);
